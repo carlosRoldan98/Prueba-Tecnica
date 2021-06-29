@@ -1,0 +1,17 @@
+<div class="message">
+  <div>
+    <h1>BIENVENIDO</h1>
+    <button routerLink="/add-restaurant">Agregar Restaurante</button>
+  </div>
+</div>
+<section class="restaurant">
+  <div class="card"  *ngFor="let item of restaurants">
+    <h2>{{item.name}}</h2>
+      <img class="image" src="{{item.logo}}">
+      <div class="container">
+        <p>{{item.description}}</p>
+        <p>Rating: {{item.rating}}</p>
+        <button routerLink="/create-review">Agregar Reseña</button>
+      </div>
+  </div>
+</section>

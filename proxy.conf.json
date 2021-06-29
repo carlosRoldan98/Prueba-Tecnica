@@ -1,0 +1,8 @@
+{
+    "/api/*":{
+        "target": "https://tellurium.behuns.com",
+        "secure": false,
+        "changeOrigin": true
+    }
+    
+}
