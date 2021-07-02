@@ -1,22 +1,52 @@
+<div class="table">
+    <table class="review">
+        <tr>
+          <th>Restaurante</th>
+          <th>E-Mail</th>
+          <th>Comentarios</th>
+          <th>Ratings</th>
+          <th>Fecha</th>
+        </tr>
+        <tr  *ngFor="let item of reviews">
+          <td *ngIf="item.restaurant=='0bf52bc8-5c8a-40c1-92cc-735b46bab1d8'">Nagoaka</td>
+          <td *ngIf="item.restaurant=='32055210-bb11-4ac2-877b-5b27265bc383'">Uncle Samy</td>
+          <td>{{item.email}}</td>
+          <td>{{item.comments}}</td>
+          <td>{{item.rating}}</td>
+          <td>{{item.created | date:'medium'}}</td>
+        </tr>
+      </table>
+</div>
+
 <div class="container">
     <div class="form">
-        <label>Restaurante: </label>
-        <input type="text"placeholder="Restaurante...">
-    
-        <label>E-Mail: </label>
-        <input type="text"placeholder="E-Mail...">
-        
-        <label>Comments: </label>
-        <input type="text"placeholder="Comments...">
-
-        <label>Rating: </label>
-        <input type="text"placeholder="Rating...">
-
-        <label>Date: </label>
-        <input type="date">
-    
-        <button>Enviar</button>
-        <button routerLink="/list-resturants">Volver</button>
+        <h1>Agregar Reseña</h1>
+        <form #postReview="ngForm" (ngSubmit)="onSubmit(postReview.value)">
+          <label>Restaurante: </label>
+          <select name="restaurant" ngModel>
+            <option value="0bf52bc8-5c8a-40c1-92cc-735b46bab1d8">Nagaoka</option>
+            <option value="32055210-bb11-4ac2-877b-5b27265bc383">Uncle Sammy</option>
+          </select>
+          <label>E-Mail: </label>
+          <input type="text" name="email" ngModel>
+          <label>Comentarios: </label>
+          <input type="text" name="comments" ngModel>
+          <label>Rating: </label>
+          <select name="rating" ngModel>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+          <input type="date" name="created" ngModel>
+          <button type="submit">ENVIAR</button>
+          <button routerLink="/list-restaurants">VOLVER</button>
+        </form>
     </div>
 </div>
+
+
+
+
 

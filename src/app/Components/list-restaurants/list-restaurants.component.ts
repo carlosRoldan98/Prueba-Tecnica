@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/Services/api/api.service';
-import { RestaurantsInfo } from 'src/restaurantsInfo';
 
 
 @Component({
@@ -11,18 +10,27 @@ import { RestaurantsInfo } from 'src/restaurantsInfo';
 
 export class ListRestaurantsComponent implements OnInit {
 
-  restaurants: Array<RestaurantsInfo> = [];
+  restaurants: any[] = [];
+  filterrestaurant = '';
+  
 
-  constructor(private apiService: ApiService) { 
-    this.apiService.getResturants().subscribe((resp:any)=>{
-      console.log(resp)
-      this.restaurants = resp;
-    })
-  }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(){
-
+    this.apiService.getRestaurants().subscribe(data => {
+      this.restaurants = data;
+    });
   }
-   
+
+  saveRestaurant(){
+    const newRestaurant = { name: 'Carls Jr', description: 'Comida Rapida', rating: 3, food_type: ['b28f3700-126a-434a-99b0-f418523624dd'] };
+    this.apiService.addRestaurant(newRestaurant).subscribe(body => console.log(body))
+  }
+
+  onSubmit(data: any) {
+    console.log(data)
+    this.apiService.addRestaurant(data).subscribe(body => this.restaurants.push(body));
+  }
+
 
 }

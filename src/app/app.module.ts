@@ -9,19 +9,25 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     routingComponents,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,65 @@
 <div class="message">
   <div>
     <h1>BIENVENIDO</h1>
-    <button routerLink="/add-restaurant">Agregar Restaurante</button>
+    <div class="options">
+      <button routerLink="/create-review">RESEÑAS</button>
+    </div>
   </div>
 </div>
+<h1>Filtrar Restaurante: </h1>
+<div class="fil">
+  <input
+    type="text"
+    class="forms-control"
+    placeholder="Buscar.."
+    [(ngModel)]="filterrestaurant"
+    name="filterrestaurant"
+  />
+</div>
+
 <section class="restaurant">
-  <div class="card"  *ngFor="let item of restaurants">
+  <div class="card"  *ngFor="let item of restaurants | filter: filterrestaurant">
     <h2>{{item.name}}</h2>
       <img class="image" src="{{item.logo}}">
-      <div class="container">
+      <div class="cont">
         <p>{{item.description}}</p>
         <p>Rating: {{item.rating}}</p>
-        <button routerLink="/create-review">Agregar Reseña</button>
+        <div *ngIf="item.food_type=='b28f3700-126a-434a-99b0-f418523624dd'">
+          Tipo de Comida: Tacos
+        </div>
+        <div *ngIf="item.food_type=='2cab9f62-6a60-4722-ab7d-898f0999f4b1'">
+          Tipo de Comida: China
+        </div>
+        <div *ngIf="item.food_type=='a446de94-cb3f-4a47-9fc4-02177168cb7f'">
+          Tipo de Comida: Española
+        </div>
+       
       </div>
   </div>
 </section>
+<div class="container">
+  <div class="form">
+    <h1>Agregar Restaurante</h1>
+    <form #postRestaurant="ngForm" (ngSubmit)="onSubmit(postRestaurant.value)">
+      <label>Nombre: </label>
+      <input type="text" name="name" ngModel>
+      <label>Descripción: </label>
+      <input type="text" name="description" ngModel>
+      <label>Rating: </label>
+      <select name="rating" ngModel>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+      </select>
+      <label>Tipo de Comida: </label>
+      <select name="food_type" ngModel>
+        <option value="['2cab9f62-6a60-4722-ab7d-898f0999f4b1']">China</option>
+        <option value="['a446de94-cb3f-4a47-9fc4-02177168cb7f']">Española</option>
+      </select>
+      <button type="submit">ENVIAR</button>
+    </form>
+  </div>
+</div>
+ 
